@@ -1,7 +1,6 @@
 const Koa = require('koa');
 const Router = require('koa-router');
-const { Client } = require('pg');
-const DbInfo = require('./config');
+const conn = require('./dbconnection');
 
 const app = new Koa();
 const router = new Router();
@@ -12,13 +11,7 @@ const router = new Router();
 설명 : db커넥션 생성 후 아이디 중복여부 조회
 */
 router.get('/idduplicate', async (ctx) => {
-  const pg = new Client({
-    user: DbInfo.id,
-    host: DbInfo.host,
-    database: DbInfo.db,
-    password: DbInfo.pw,
-    port: DbInfo.port,
-  });
+  const pg = conn.conn;
   pg.connect();
   const res = await pg.query(
     `select userId from userinfo where userId ='${ctx.query.id}'`,
