@@ -9,6 +9,7 @@
   "private": false,
   "dependencies": {
     "koa": "^2.13.0",
+    "koa-bodyparser": "4.3.0",
     "koa-router": "9.4.0",
     "pg": "8.3.0",
     "ps": "1.0.0"
